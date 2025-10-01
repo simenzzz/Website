@@ -5,9 +5,11 @@ import Hero from '../components/Hero'
 import ServicesDivision from '../components/ServicesDivision'
 import WhyChooseUs from '../components/WhyChooseUs'
 import FAQ from '../components/FAQ'
+import { useScrollToSection } from '../hooks/useScrollToSection'
 import './HomePage.css'
 
 const HomePage: React.FC = () => {
+  useScrollToSection()
   return (
     <div className="home-page">
       <Header />

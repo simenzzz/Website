@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.verifyIdToken = exports.getAuth = exports.getFirebaseApp = exports.initializeFirebase = void 0;
+exports.verifyIdToken = exports.getAuth = exports.initializeFirebase = void 0;
 const firebase_admin_1 = __importDefault(require("firebase-admin"));
 let firebaseApp;
 const initializeFirebase = () => {
@@ -38,13 +38,6 @@ const initializeFirebase = () => {
     }
 };
 exports.initializeFirebase = initializeFirebase;
-const getFirebaseApp = () => {
-    if (!firebaseApp) {
-        throw new Error('Firebase not initialized');
-    }
-    return firebaseApp;
-};
-exports.getFirebaseApp = getFirebaseApp;
 const getAuth = () => {
     return firebase_admin_1.default.auth();
 };

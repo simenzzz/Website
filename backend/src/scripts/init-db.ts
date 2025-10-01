@@ -1,15 +1,14 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const dotenv_1 = __importDefault(require("dotenv"));
-const database_1 = require("../config/database");
-dotenv_1.default.config();
+import dotenv from 'dotenv';
+import { connectDatabase, query } from '../config/database';
+
+dotenv.config();
+
 const initializeTables = async () => {
-    try {
-        console.log('🗂️  Creating tables...');
-        await (0, database_1.query)(`
+  try {
+    console.log('🗂️  Creating tables...');
+    
+    // Create users table
+    await query(`
       CREATE TABLE IF NOT EXISTS users (
         id SERIAL PRIMARY KEY,
         firebase_uid VARCHAR(255) UNIQUE NOT NULL,
@@ -19,7 +18,9 @@ const initializeTables = async () => {
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )
     `);
-        await (0, database_1.query)(`
+    
+    // Create customers table
+    await query(`
       CREATE TABLE IF NOT EXISTS customers (
         id SERIAL PRIMARY KEY,
         user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
@@ -31,7 +32,9 @@ const initializeTables = async () => {
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )
     `);
-        await (0, database_1.query)(`
+    
+    // Create sitters table
+    await query(`
       CREATE TABLE IF NOT EXISTS sitters (
         id SERIAL PRIMARY KEY,
         user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
@@ -51,7 +54,9 @@ const initializeTables = async () => {
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )
     `);
-        await (0, database_1.query)(`
+    
+    // Create children table
+    await query(`
       CREATE TABLE IF NOT EXISTS children (
         id SERIAL PRIMARY KEY,
         customer_id INTEGER REFERENCES customers(id) ON DELETE CASCADE,
@@ -64,7 +69,9 @@ const initializeTables = async () => {
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )
     `);
-        await (0, database_1.query)(`
+    
+    // Create pets table
+    await query(`
       CREATE TABLE IF NOT EXISTS pets (
         id SERIAL PRIMARY KEY,
         customer_id INTEGER REFERENCES customers(id) ON DELETE CASCADE,
@@ -79,36 +86,41 @@ const initializeTables = async () => {
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )
     `);
-        console.log('✅ Tables created successfully');
-        console.log('🔍 Creating indexes...');
-        await (0, database_1.query)('CREATE INDEX IF NOT EXISTS idx_users_firebase_uid ON users(firebase_uid)');
-        await (0, database_1.query)('CREATE INDEX IF NOT EXISTS idx_users_email ON users(email)');
-        await (0, database_1.query)('CREATE INDEX IF NOT EXISTS idx_customers_user_id ON customers(user_id)');
-        await (0, database_1.query)('CREATE INDEX IF NOT EXISTS idx_sitters_user_id ON sitters(user_id)');
-        await (0, database_1.query)('CREATE INDEX IF NOT EXISTS idx_sitters_area ON sitters(area)');
-        await (0, database_1.query)('CREATE INDEX IF NOT EXISTS idx_sitters_city ON sitters(city)');
-        await (0, database_1.query)('CREATE INDEX IF NOT EXISTS idx_children_customer_id ON children(customer_id)');
-        await (0, database_1.query)('CREATE INDEX IF NOT EXISTS idx_pets_customer_id ON pets(customer_id)');
-        console.log('✅ Indexes created successfully');
-    }
-    catch (error) {
-        console.error('❌ Error creating tables:', error);
-        throw error;
-    }
+    
+    console.log('✅ Tables created successfully');
+    
+    // Create indexes
+    console.log('🔍 Creating indexes...');
+    
+    await query('CREATE INDEX IF NOT EXISTS idx_users_firebase_uid ON users(firebase_uid)');
+    await query('CREATE INDEX IF NOT EXISTS idx_users_email ON users(email)');
+    await query('CREATE INDEX IF NOT EXISTS idx_customers_user_id ON customers(user_id)');
+    await query('CREATE INDEX IF NOT EXISTS idx_sitters_user_id ON sitters(user_id)');
+    await query('CREATE INDEX IF NOT EXISTS idx_sitters_area ON sitters(area)');
+    await query('CREATE INDEX IF NOT EXISTS idx_sitters_city ON sitters(city)');
+    await query('CREATE INDEX IF NOT EXISTS idx_children_customer_id ON children(customer_id)');
+    await query('CREATE INDEX IF NOT EXISTS idx_pets_customer_id ON pets(customer_id)');
+    
+    console.log('✅ Indexes created successfully');
+    
+  } catch (error) {
+    console.error('❌ Error creating tables:', error);
+    throw error;
+  }
 };
+
 const initializeDatabase = async () => {
-    try {
-        console.log('🚀 Starting database initialization...');
-        (0, database_1.connectDatabase)();
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        await initializeTables();
-        console.log('✅ Database initialization completed successfully!');
-        process.exit(0);
-    }
-    catch (error) {
-        console.error('❌ Database initialization failed:', error);
-        process.exit(1);
-    }
+  try {
+    console.log('🚀 Starting database initialization...');
+    connectDatabase();
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    await initializeTables();
+    console.log('✅ Database initialization completed successfully!');
+    process.exit(0);
+  } catch (error) {
+    console.error('❌ Database initialization failed:', error);
+    process.exit(1);
+  }
 };
+
 initializeDatabase();
-//# sourceMappingURL=init-db.js.map

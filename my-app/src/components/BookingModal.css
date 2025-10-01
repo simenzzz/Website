@@ -1,3 +1,4 @@
+/* Modal Overlay */
 .booking-modal-overlay {
   position: fixed;
   top: 0;
@@ -12,16 +13,19 @@
   padding: 20px;
 }
 
+/* Modal Container */
 .booking-modal {
   background: white;
-  border-radius: 20px;
-  max-width: 600px;
-  width: 100%;
+  border-radius: 15px;
+  width: 500px;
+  max-width: 90vw;
   max-height: 90vh;
   overflow-y: auto;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  position: relative;
 }
 
+/* Modal Header */
 .booking-modal-header {
   display: flex;
   justify-content: space-between;
@@ -31,7 +35,7 @@
 }
 
 .booking-modal-header h2 {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 600;
   color: #2c3e50;
   margin: 0;
@@ -53,17 +57,18 @@
   color: #e74c3c;
 }
 
+/* Modal Content */
 .booking-modal-content {
   padding: 30px;
 }
 
-/* Login Prompt Styles */
-.login-prompt {
+/* Login Section */
+.login-section {
   text-align: center;
-  padding: 40px 20px;
+  padding: 20px 0;
 }
 
-.login-prompt-icon {
+.login-icon {
   width: 80px;
   height: 80px;
   background: linear-gradient(135deg, #e74c3c, #c0392b);
@@ -71,24 +76,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 20px;
+  margin: 0 auto 25px;
 }
 
-.login-prompt-icon i {
+.login-icon i {
   font-size: 2rem;
   color: white;
 }
 
-.login-prompt h3 {
+.login-section h3 {
   font-size: 1.5rem;
   color: #2c3e50;
   margin-bottom: 15px;
 }
 
-.login-prompt p {
+.login-section p {
   color: #7f8c8d;
   margin-bottom: 30px;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .login-buttons {
@@ -107,6 +112,7 @@
   align-items: center;
   gap: 8px;
   transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
 .btn-login {
@@ -129,112 +135,11 @@
   transform: translateY(-2px);
 }
 
-/* Booking Form Styles */
+/* Booking Form */
 .booking-form {
   display: flex;
   flex-direction: column;
-  gap: 30px;
-}
-
-.form-section {
-  background: #f8f9fa;
-  padding: 25px;
-  border-radius: 15px;
-  border-left: 4px solid #e74c3c;
-}
-
-.form-section h3 {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 1.2rem;
-  color: #2c3e50;
-  margin-bottom: 20px;
-}
-
-.form-section h3 i {
-  color: #e74c3c;
-}
-
-.no-items {
-  text-align: center;
-  padding: 20px;
-  background: white;
-  border-radius: 10px;
-  border: 2px dashed #bdc3c7;
-}
-
-.no-items p {
-  color: #7f8c8d;
-  margin-bottom: 15px;
-}
-
-.btn-add {
-  background: #27ae60;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 20px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-.btn-add:hover {
-  background: #229954;
-  transform: translateY(-2px);
-}
-
-.items-selection {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.item-option {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  padding: 15px;
-  background: white;
-  border-radius: 10px;
-  border: 2px solid #ecf0f1;
-  transition: all 0.3s ease;
-}
-
-.item-option:hover {
-  border-color: #e74c3c;
-  background: #fdf2f2;
-}
-
-.item-option input[type="checkbox"] {
-  width: 20px;
-  height: 20px;
-  accent-color: #e74c3c;
-}
-
-.item-option label {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
-  flex: 1;
-}
-
-.item-name {
-  font-weight: 600;
-  color: #2c3e50;
-  font-size: 1.1rem;
-}
-
-.item-details {
-  color: #7f8c8d;
-  font-size: 0.9rem;
-}
-
-.datetime-selection {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 20px;
+  gap: 25px;
 }
 
 .form-group {
@@ -246,10 +151,16 @@
 .form-group label {
   font-weight: 600;
   color: #2c3e50;
-  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.form-group input,
+.form-group label i {
+  color: #e74c3c;
+  font-size: 1rem;
+}
+
 .form-group select,
 .form-group textarea {
   padding: 12px 15px;
@@ -257,9 +168,9 @@
   border-radius: 10px;
   font-size: 1rem;
   transition: all 0.3s ease;
+  background: white;
 }
 
-.form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
   outline: none;
@@ -269,9 +180,17 @@
 
 .form-group textarea {
   resize: vertical;
-  min-height: 100px;
+  min-height: 80px;
 }
 
+/* Time Selection */
+.time-selection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Form Actions */
 .form-actions {
   display: flex;
   gap: 15px;
@@ -290,12 +209,12 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  border: none;
 }
 
 .btn-cancel {
   background: #95a5a6;
   color: white;
-  border: none;
 }
 
 .btn-cancel:hover {
@@ -306,25 +225,18 @@
 .btn-submit {
   background: #27ae60;
   color: white;
-  border: none;
 }
 
-.btn-submit:hover:not(:disabled) {
+.btn-submit:hover {
   background: #229954;
   transform: translateY(-2px);
-}
-
-.btn-submit:disabled {
-  background: #bdc3c7;
-  cursor: not-allowed;
-  transform: none;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .booking-modal {
+    width: 90vw;
     margin: 10px;
-    max-height: 95vh;
   }
   
   .booking-modal-header {
@@ -340,7 +252,7 @@
     align-items: center;
   }
   
-  .datetime-selection {
+  .time-selection {
     grid-template-columns: 1fr;
   }
   

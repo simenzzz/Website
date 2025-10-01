@@ -10,8 +10,8 @@ const Hero: React.FC = () => {
           <h1>Trusted Care for Your Loved Ones</h1>
           <p>Professional pet sitting and baby sitting services you can rely on. We provide compassionate, experienced care for your pets and children when you need it most.</p>
           <div className="hero-buttons">
-            <Link to="#services" className="btn-primary">Get Started</Link>
-            <Link to="#about" className="btn-secondary">Learn More</Link>
+            <Link to="/portal" className="btn-primary">Get Started</Link>
+            <Link to="/#about" className="btn-secondary">Learn More</Link>
           </div>
         </div>
         <div className="hero-image">

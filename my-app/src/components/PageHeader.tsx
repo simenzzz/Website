@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import ScrollLink from './ScrollLink'
 import './Header.css'
 
 const PageHeader: React.FC = () => {
@@ -21,8 +22,8 @@ const PageHeader: React.FC = () => {
           <ul className="nav-list">
             <li><Link to="/">Home</Link></li>
             <li><Link to="/sitters">Find Sitters</Link></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#faq">FAQ</a></li>
+            <li><ScrollLink to="/#about">About Us</ScrollLink></li>
+            <li><ScrollLink to="/#faq">FAQ</ScrollLink></li>
             <li><Link to="/portal">Sign In</Link></li>
             <li><Link to="/portal" className="btn-signup">Sign Up</Link></li>
           </ul>
