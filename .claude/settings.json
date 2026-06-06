@@ -1,4 +1,4 @@
 {
-    "plansDirectory": "/plans",
+    "plansDirectory": ".claude/plans",
     "includeCoAuthoredBy": false
 }

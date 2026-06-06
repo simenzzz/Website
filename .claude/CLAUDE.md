@@ -168,4 +168,4 @@ callback (test-mode fallback), DB `password`/`ssl:false` fallbacks, unauthentica
 sitter-PII endpoint (`/api/sitters/fetchSitters`), hardcoded `http://localhost:5000` in
 frontend services, missing route guards, no input validation, no rate limiting,
 non-transactional booking creation, no double-booking check. Full audit + sequencing:
-`~/.claude/plans/careconnect-hardening.md`.
+`.claude/plans/careconnect-hardening.md`.
